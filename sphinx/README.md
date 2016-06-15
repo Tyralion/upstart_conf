@@ -15,8 +15,7 @@ Manage multiple Sphinx servers as services on the same box using Ubuntu upstart.
 You need to customise `sphinx.conf` to:
 
 * Set the right user your app should be running on unless you want root to execute it!
-  * Look for `setuid apps` and `setgid apps`, uncomment those lines and replace `apps` to whatever your deployment user is.
-  * Replace `apps` on the paths (or set the right paths to your user's home) everywhere else.
+  * Look for `setuid nobody` and `setgid nobody`, replace `nobody` to whatever your deployment user is.
 
 ## Managing
 
