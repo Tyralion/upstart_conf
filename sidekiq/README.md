@@ -10,6 +10,14 @@ Manage multiple Sidekiq servers as services on the same box using Ubuntu upstart
     # Create an empty configuration file
     sudo touch /etc/sidekiq.conf
 
+## Before starting...
+
+You need to customise `sidekiq.conf` to:
+
+* Set the right user your app should be running on unless you want root to execute it!
+  * Look for `setuid apps` and `setgid apps`, uncomment those lines and replace `apps` to whatever your deployment user is.
+  * Replace `apps` on the paths (or set the right paths to your user's home) everywhere else.
+
 ## Managing
 
 Sidekiq apps are referenced in /etc/sidekiq.conf by default. Add each app's path as a new line, e.g.:
@@ -37,15 +45,4 @@ Each sidekiq instance is named after its directory, so for an app called `/home/
 
 ## Conventions
 
-* The script expects:
-  * a config file to exist under `config/sidekiq.yml` in your app. E.g.: `/home/apps/my-app/config/sidekiq.yml`.
-
-You can always change those defaults by editing the scripts.
-
-## Before starting...
-
-You need to customise `sidekiq.conf` to:
-
-* Set the right user your app should be running on unless you want root to execute it!
-  * Look for `setuid apps` and `setgid apps`, uncomment those lines and replace `apps` to whatever your deployment user is.
-  * Replace `apps` on the paths (or set the right paths to your user's home) everywhere else.
+* a config file to exist under `config/sidekiq.yml` in your app. E.g.: `/home/apps/my-app/config/sidekiq.yml`.
